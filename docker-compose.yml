@@ -1,0 +1,11 @@
+# Run the prototype in a container: docker compose up --build
+# Reads your .env file; logs are written to ./logs on your machine.
+services:
+  hanasou:
+    build: .
+    ports:
+      - "3000:3000"
+    env_file: .env
+    volumes:
+      - ./logs:/app/logs
+    restart: unless-stopped

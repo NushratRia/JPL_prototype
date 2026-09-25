@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: hanasou
+    runtime: node
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: PROVIDER
+        value: openai
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: ADMIN_KEY
+        sync: false

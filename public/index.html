@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Hanasou: Japanese through roleplay</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏮</text></svg>">
+</head>
+<body>
+  <div class="bg" id="bg" aria-hidden="true"></div>
+
+  <header class="top">
+    <span class="brand"><span aria-hidden="true">🏮</span> Hanasou</span>
+    <div class="top-actions">
+      <button class="icon-btn" id="notesToggle" type="button" aria-controls="notesPanel" aria-expanded="false" hidden>Notes <span class="count" id="notesCount">0</span></button>
+      <button class="icon-btn" id="newChat" type="button" hidden>New story</button>
+    </div>
+  </header>
+
+  <main class="main" id="main">
+    <!-- Home -->
+    <section class="home" id="home">
+      <div class="glass intro">
+        <h1>Learn Japanese through roleplay</h1>
+        <p>Step into everyday situations in Japan and talk your way through them. Sensei sets the scene and plays everyone you meet. Reply in Japanese, romaji, English, or a mix, by typing or speaking.</p>
+        <button class="start" id="startBtn" type="button">Start a roleplay</button>
+        <p class="fine">Conversations are saved for research.</p>
+      </div>
+    </section>
+
+    <!-- Setup questionnaire -->
+    <section class="setup" id="setup" hidden>
+      <form class="glass setup-card" id="setupForm">
+        <h1>Let's set up your story</h1>
+        <p class="lede">Your answers shape the story, the language, and the help you get. You can change them later.</p>
+        <div id="setupFields"></div>
+        <div class="setup-actions">
+          <button class="start" type="submit">Start the story</button>
+          <button class="chip" type="button" id="setupBack">Back</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Chat -->
+    <section class="chat" id="chat" hidden>
+      <ol class="messages" id="messages" aria-live="polite"></ol>
+    </section>
+  </main>
+
+  <aside class="glass notes-panel" id="notesPanel" aria-label="Notes" hidden>
+    <div class="notes-head">
+      <h2>Notes</h2>
+      <button class="chip small" id="notesClose" type="button">Close</button>
+    </div>
+    <p class="notes-empty" id="notesEmpty">Words, grammar, and tips from your story collect here.</p>
+    <ol class="notes-list" id="notesList"></ol>
+  </aside>
+
+  <footer class="dock" id="dock">
+    <button class="glass resume" id="resumeBtn" type="button" hidden>Return to your last story</button>
+    <div class="glass composer">
+      <textarea id="input" rows="1" placeholder="Type or speak your reply" aria-label="Your message"></textarea>
+      <div class="composer-row">
+        <div class="settings-wrap">
+          <button class="chip" id="settingsBtn" type="button" aria-expanded="false" aria-controls="settings">Settings</button>
+          <div class="glass popover" id="settings" hidden>
+            <div class="pop-group">
+              <strong>Show in dialogue</strong>
+              <label class="pop-toggle"><span>Japanese script</span><input type="checkbox" class="switch" id="showJp"></label>
+              <label class="pop-toggle"><span>Romaji</span><input type="checkbox" class="switch" id="showRo"></label>
+              <label class="pop-toggle"><span>English</span><input type="checkbox" class="switch" id="showEn"></label>
+            </div>
+            <button class="pop-item" id="changeSetup" type="button">
+              <strong>Change setup</strong>
+              <span>Answer the questions again and start a new story</span>
+            </button>
+            <button class="pop-item" id="openInstructions" type="button">
+              <strong>Custom instructions</strong>
+              <span>Anything else Sensei should know</span>
+            </button>
+            <label class="pop-item row">
+              <span><strong>Read replies aloud</strong><span>Off: tap the speaker on a line to hear it</span></span>
+              <input type="checkbox" class="switch" id="ttsToggle">
+            </label>
+            <label class="pop-item">
+              <strong>Voice</strong>
+              <select id="voiceSelect"></select>
+            </label>
+            <label class="pop-item">
+              <strong>Speaking speed</strong>
+              <input type="range" id="rateInput" min="0.6" max="1.2" step="0.05">
+            </label>
+            <label class="pop-item">
+              <strong>Microphone language</strong>
+              <select id="micLang">
+                <option value="auto">Detect automatically</option>
+                <option value="ja">Japanese</option>
+                <option value="en">English</option>
+              </select>
+            </label>
+            <label class="pop-item row">
+              <span><strong>Show background image</strong></span>
+              <input type="checkbox" class="switch" id="bgToggle">
+            </label>
+          </div>
+        </div>
+        <button class="chip" id="helpBtn" type="button" hidden>Help me reply</button>
+        <span class="status" id="status" role="status"></span>
+        <button class="round" id="micBtn" type="button" aria-label="Speak" aria-pressed="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15a3 3 0 0 0 3-3V6a3 3 0 1 0-6 0v6a3 3 0 0 0 3 3Zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.92V21h2v-2.08A7 7 0 0 0 19 12h-2Z"/></svg>
+        </button>
+        <button class="round send" id="sendBtn" type="button" aria-label="Send">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.4 20.4 21 12 3.4 3.6 3.4 10l12 2-12 2z"/></svg>
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <dialog class="glass dialog" id="instructionsDialog">
+    <form method="dialog">
+      <h2>Custom instructions</h2>
+      <p>For example: "Speak a bit slower and simpler", "Remind me of polite forms", or "I'm preparing for a trip to Osaka".</p>
+      <textarea id="instructionsText" rows="6" maxlength="1500"></textarea>
+      <div class="dialog-row">
+        <button class="chip" value="cancel">Cancel</button>
+        <button class="chip primary" value="save">Save</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="/app.js" type="module"></script>
+</body>
+</html>

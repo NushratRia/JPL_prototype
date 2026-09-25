@@ -1,0 +1,16 @@
+{
+  "name": "hanasou",
+  "version": "0.1.0",
+  "description": "Basic roleplay chat prototype for learning spoken Japanese (formative study)",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "engines": { "node": ">=18.17" },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.21.2"
+  }
+}
