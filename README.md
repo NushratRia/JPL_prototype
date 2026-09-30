@@ -1,8 +1,8 @@
-# Hanasou: Japanese through roleplay (formative study prototype)
+# Hanasou: Japanese through roleplay (prototype)
 
 A basic chat prototype for learning Japanese through roleplay. "Sensei" asks about the learner's level, preferred situation, and correction style, then sets scenes and plays the characters. Learners can type or speak, and replies can be read aloud.
 
-It's intentionally minimal, meant for a formative study of how learners experience an AI roleplay tutor.
+It's intentionally minimal, meant for a study of how learners experience an AI roleplay tutor.
 
 ## Features
 
